@@ -67,7 +67,7 @@ iso_text = figlet_format("HANGMAN", font="slant") # isometric1
 
 HANGMAN_ASCII_ART = f"""
 --------------------------------------------------------\n
-Welcome to the game Hangman!
+Welcome to the Hangman game!
 {iso_text}
 """
 
@@ -77,7 +77,7 @@ def get_intro(fail_count):
     lives_count = MAX_RETRIES-fail_count
 
     caption = HANGMAN_ASCII_ART
-    caption += "\nLives: "+ str(lives_count)
+    caption += "Lives: "+ str(lives_count)
     
     return caption
 
@@ -156,12 +156,11 @@ def main():
     
     (words_count, secret_word) = choose_word(file_path, index)
 
-    print("Let's start!")
+    print("\nLet's start!")
 
     old_letters_guessed = []
     is_win = False
     while(fail_count < MAX_RETRIES and not is_win):
-        
         hidden_word = get_hidden_word(secret_word, old_letters_guessed)
 
         print(hidden_word)
@@ -180,10 +179,10 @@ def main():
 
         is_win = check_win(secret_word, old_letters_guessed)
     
-    if(is_win): print("WIN!")
-    else: print("LOSE!")
-
-    print("Total Fails:", fail_count)
+    if(is_win): print("\nWIN!")
+    else: print("\nLOSE!")
+    print("Secret Word:", secret_word)
+    print(f"Total Fails: {fail_count}/{MAX_RETRIES}")
 
 if __name__ == "__main__":
     main()
